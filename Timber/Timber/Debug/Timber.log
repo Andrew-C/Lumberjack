@@ -1,2 +1,10 @@
 ﻿  Timber.cpp
+f:\program files (x86)\visual studio stuff\projects\timber\lumberjack\timber\timber\timber.cpp(89): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+f:\program files (x86)\visual studio stuff\projects\timber\lumberjack\timber\timber\timber.cpp(92): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+f:\program files (x86)\visual studio stuff\projects\timber\lumberjack\timber\timber\timber.cpp(112): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+f:\program files (x86)\visual studio stuff\projects\timber\lumberjack\timber\timber\timber.cpp(115): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+f:\program files (x86)\visual studio stuff\projects\timber\lumberjack\timber\timber\timber.cpp(132): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+f:\program files (x86)\visual studio stuff\projects\timber\lumberjack\timber\timber\timber.cpp(135): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+f:\program files (x86)\visual studio stuff\projects\timber\lumberjack\timber\timber\timber.cpp(152): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+f:\program files (x86)\visual studio stuff\projects\timber\lumberjack\timber\timber\timber.cpp(155): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   Timber.vcxproj -> F:\Program Files (x86)\Visual Studio Stuff\Projects\Timber\Lumberjack\Timber\Debug\Timber.exe
