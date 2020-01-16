@@ -1,11 +1,11 @@
 ////////////////////////////////////////////////////////
 /*
+Created by Andrew Chen on August 19, 2019
 Known bugs:
 1. Timebar for multiplayer
 2. Axe does not flip
-3. Axes for multiplayer
-4. Gravestone does not appear on side where player was squished
-
+3. Gravestone does not appear on side where player was squished
+4. Some texts need repositioning
 */
 ////////////////////////////////////////////////////////
 #include "pch.h"
@@ -155,7 +155,7 @@ int main()
 
 	messageText.setCharacterSize(75);
 	scoreText.setCharacterSize(100);
-	scoreText.setCharacterSize(100);
+	scoreTextTwo.setCharacterSize(100);
 	onePlayer.setCharacterSize(150);
 	twoPlayer.setCharacterSize(150);
 	messageText.setFillColor(Color::White);
@@ -234,8 +234,11 @@ int main()
 	//axe lines up with the tree
 	const float AXE_POSITION_LEFT = 700;
 	const float AXE_POSITION_RIGHT = 1075;
-	const float AXE_POSITION_LEFT_TWO = 1310;
-	const float AXE_POSITION_RIGHT_TWO = 1685;
+	//values for multiplayer
+	const float AXE_POSITION_LEFT_ONE = 220;
+	const float AXE_POSITION_RIGHT_ONE = 595;
+	const float AXE_POSITION_LEFT_TWO = 1180;
+	const float AXE_POSITION_RIGHT_TWO = 1555;
 
 	//prepare flying log
 	Texture textureLog;
@@ -314,6 +317,8 @@ int main()
 				//scenario when no key is being held down
 				else
 				{
+					spriteAxe.setPosition(2000, spriteAxe.getPosition().y);
+					spriteAxeTwo.setPosition(2000, spriteAxeTwo.getPosition().y);
 					acceptInput = true;
 					acceptInputTwo = true;
 				}
@@ -333,6 +338,9 @@ int main()
 				spritePlayer.setPosition(580, 720);
 				spriteTree.setPosition(810, 0);
 				spriteAxe.setPosition(700, 830);
+				spriteLog.setPosition(810, 720);
+				//moves P2 score out of screen when single player option is highlighted
+				scoreTextTwo.setPosition(2000, 20);
 			}
 			if (Keyboard::isKeyPressed(Keyboard::Down))
 			{
@@ -342,6 +350,7 @@ int main()
 				spriteLog.setPosition(330, 720);
 				spriteTree.setPosition(330, 0);
 				spriteAxe.setPosition(220, 830);
+				scoreTextTwo.setPosition(980, 20);
 			}
 		}
 		//start the game
@@ -354,11 +363,7 @@ int main()
 			score = 0;
 			scoreTwo = 0;
 			timeRemaining = 6;
-			if (multiplayerOn)
-			{
-				timeRemaining = 20;
-			}
-
+			
 			//remove branches
 			for (int i = 1; i < NUM_BRANCHES; i++)
 			{
@@ -367,16 +372,21 @@ int main()
 
 			//hide gravestone
 			spriteRIP.setPosition(675, 2000);
-			//move player into position
+			
 			if (!multiplayerOn)
 			{
+				//move player into position
 				spritePlayer.setPosition(580, 720);
 				spriteAxe.setPosition(AXE_POSITION_LEFT, spriteAxe.getPosition().y);
 			}
 			else
 			{
+				spritePlayer.setPosition(100, 720);
+				spriteAxe.setPosition(AXE_POSITION_LEFT_ONE, spriteAxe.getPosition().y);
 				spritePlayerTwo.setPosition(1060, 720);
-				spriteAxeTwo.setPosition(AXE_POSITION_LEFT_TWO, spriteAxe.getPosition().y);
+				spriteAxeTwo.setPosition(AXE_POSITION_LEFT_TWO, spriteAxeTwo.getPosition().y);
+
+				timeRemaining = 20;
 			}
 			
 
@@ -610,7 +620,7 @@ int main()
 					playerSide = side::RIGHT;
 					score++;
 
-					spriteAxe.setPosition(AXE_POSITION_RIGHT, spriteAxe.getPosition().y);
+					spriteAxe.setPosition(AXE_POSITION_RIGHT_ONE, spriteAxe.getPosition().y);
 					spritePlayer.setPosition(720, 720);
 					updateBranches(score, PLAYERONE);
 					spriteLog.setPosition(330, 720);
@@ -627,7 +637,7 @@ int main()
 					playerSide = side::LEFT;
 					score++;
 
-					spriteAxe.setPosition(AXE_POSITION_LEFT, spriteAxe.getPosition().y);
+					spriteAxe.setPosition(AXE_POSITION_LEFT_ONE, spriteAxe.getPosition().y);
 					spritePlayer.setPosition(100, 720);
 					updateBranches(score, PLAYERONE);
 					spriteLog.setPosition(330, 720);
@@ -784,6 +794,9 @@ int main()
 				std::stringstream ss;
 				ss << "Score = " << score;
 				scoreText.setString(ss.str());
+				std::stringstream ss2;
+				ss2 << "Score = " << scoreTwo;
+				scoreTextTwo.setString(ss2.str());
 
 				//updating branch sprites
 				for (int i = 0; i < NUM_BRANCHES; i++)
@@ -811,7 +824,7 @@ int main()
 					}
 					else
 					{
-						float height = (i-5) * 150;
+						float height = (i-6) * 150;
 						if (branchPositions[i] == side::LEFT)
 						{
 							//moves branches to left side
